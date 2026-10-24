@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Kejutan Ultah — kado digital yang meledak jadi pesta</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎁</text></svg>">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;800&family=Pacifico&family=Caveat:wght@500;700&family=Lora:wght@400;700&family=Dancing+Script:wght@600&family=Chewy&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#2d1b4e;--pink:#ff3d81;--org:#ff9a3c;--yel:#ffd23f}
+*{box-sizing:border-box}
+body{margin:0;font:17px/1.45 'Baloo 2',cursive;color:var(--ink);background:#fff7ec radial-gradient(#ff3d8120 2px,transparent 2px) 0 0/26px 26px}
+[hidden]{display:none!important}
+button,input,select,textarea{font:inherit;color:inherit}
+.top{display:flex;align-items:center;gap:12px;padding:10px 18px;background:linear-gradient(90deg,var(--pink),var(--org));color:#fff;position:sticky;top:0;z-index:20;flex-wrap:wrap;border-bottom:3px solid var(--ink)}
+.brand{font:400 1.6rem 'Pacifico',cursive;margin-right:auto;text-shadow:2px 2px 0 var(--ink)}
+.top a{color:#fff;font-weight:700}
+.btn{border:2.5px solid var(--ink);background:#fff;color:var(--ink);padding:7px 18px;border-radius:999px;font-weight:700;cursor:pointer;box-shadow:3px 3px 0 var(--ink)}
+.btn:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ink)}
+.btn.pri{background:var(--pink);color:#fff}
+.btn.sm{padding:2px 12px;font-size:.85rem;box-shadow:2px 2px 0 var(--ink)}
+.btn.lg{padding:10px 28px;font-size:1.2rem}
+.btn.on{background:var(--yel)}
+main{max-width:1000px;margin:0 auto;padding:22px 16px 90px}
+h1{font:800 clamp(1.7rem,5vw,2.4rem)/1.1 'Baloo 2';margin:0 0 4px}
+.sub{margin:0 0 18px;opacity:.8}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+@media(max-width:760px){.grid{grid-template-columns:1fr}}
+.box{background:#fff;border:2.5px solid var(--ink);border-radius:18px;padding:16px;box-shadow:5px 5px 0 var(--ink);margin-bottom:18px}
+.box h3{margin:0 0 6px;font:800 1.15rem 'Baloo 2'}
+label{display:block;font-size:.88rem;font-weight:600;margin:8px 0 2px}
+input[type=text],input[type=email],input[type=password],input[type=date],input[type=number],select,textarea{width:100%;padding:7px 10px;border:2px solid var(--ink);border-radius:10px;background:#fffdf8}
+textarea{min-height:110px;resize:vertical}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.row>*{flex:1;min-width:120px}.row>.btn{flex:0 0 auto}
+.thumb{margin-top:8px;max-height:120px;max-width:100%;border-radius:10px;border:2px solid var(--ink)}
+.note{font-size:.8rem;opacity:.7;margin:6px 0 0}
+#cakePrev{width:min(230px,70%);margin:6px auto 0;display:block}
+.res{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:12px;padding:12px;background:#d8f7c8;border:2.5px solid var(--ink);border-radius:14px;word-break:break-all}
+.item{display:flex;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap;padding:10px 0;border-bottom:2px dashed #2d1b4e33}
+.item:last-child{border:0}
+dialog{border:3px solid var(--ink);border-radius:18px;padding:20px;width:min(92vw,380px);box-shadow:6px 6px 0 var(--ink)}
+dialog::backdrop{background:#2d1b4e99}
+.seg{display:flex;gap:6px;margin-bottom:6px}.seg .btn{flex:1}
+#toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(40px);background:var(--ink);color:#fff;padding:10px 18px;border-radius:12px;opacity:0;transition:.3s;z-index:99;max-width:90vw;pointer-events:none}
+#toast.on{opacity:1;transform:translateX(-50%)}
+#pv{position:fixed;inset:0;z-index:50}
+.pvx{position:fixed;top:10px;left:10px;z-index:100}
+
+/* ===== Kejutan (penonton & preview) ===== */
+.bday{position:fixed;inset:0;overflow:auto;overflow-x:hidden;font-family:'Baloo 2',cursive;color:#fff;background:linear-gradient(135deg,var(--c1),var(--c2));z-index:30}
+.bg{position:fixed;inset:0;z-index:0;transition:filter 1.8s}
+.bg video,.bg i{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;background:center/cover}
+.bg:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,#0005,#0002 40%,#0009)}
+.s0 .bg{filter:blur(10px) brightness(.7)}
+.bg i{animation:kb 22s ease-in-out infinite alternate}
+@keyframes kb{to{transform:scale(1.12)}}
+.for{position:fixed;left:0;right:0;top:9%;text-align:center;font:400 clamp(1.4rem,6vw,2rem) 'Pacifico';z-index:6;text-shadow:0 3px 0 var(--c1),0 6px 14px #0006;transition:opacity .6s;padding:0 12px}
+.hint{position:fixed;left:0;right:0;top:calc(50% + 120px);text-align:center;font-weight:800;z-index:6;animation:pulse 1.4s infinite;text-shadow:0 2px 8px #0008;transition:opacity .4s}
+@keyframes pulse{50%{transform:scale(1.08);opacity:.7}}
+.gone{opacity:0!important;pointer-events:none}
+.gift{position:fixed;left:50%;top:50%;width:190px;height:190px;margin:-95px 0 0 -95px;z-index:5;cursor:pointer;animation:wob 1.8s ease-in-out infinite;filter:drop-shadow(0 18px 18px #0007)}
+@keyframes wob{0%,100%{transform:rotate(-2.5deg)}50%{transform:rotate(2.5deg) scale(1.03)}}
+.g-body{position:absolute;left:8px;right:8px;bottom:0;height:120px;background:var(--c1);border-radius:8px;box-shadow:inset -16px 0 0 #0002;overflow:hidden}
+.g-top{position:absolute;left:-2px;right:-2px;bottom:110px;height:52px;transition:transform .9s cubic-bezier(.3,1.4,.5,1),opacity .5s .4s}
+.g-lid{position:absolute;inset:0;background:var(--c2);border-radius:10px;box-shadow:inset -16px 0 0 #0002;overflow:hidden}
+.g-rv{position:absolute;left:50%;width:28px;margin-left:-14px;top:0;bottom:0;background:var(--c3);box-shadow:inset -6px 0 0 #0002}
+.g-rh{position:absolute;left:0;right:0;top:50%;height:24px;margin-top:-4px;background:var(--c3);box-shadow:inset 0 -6px 0 #0002}
+.g-bow{position:absolute;left:0;right:0;top:0;height:0}
+.loop{position:absolute;top:-32px;width:46px;height:32px;border:10px solid var(--c3);border-radius:50%}
+.l1{left:50%;margin-left:-50px;transform:rotate(-24deg)}.l2{left:50%;margin-left:4px;transform:rotate(24deg)}
+.knot{position:absolute;left:50%;top:-16px;width:24px;height:24px;margin-left:-12px;background:var(--c3);border-radius:7px;box-shadow:inset -5px -5px 0 #0002}
+.gift.untie{animation:shk .5s .15s}
+.untie .g-bow{animation:bowfly 1s forwards}
+.untie .g-rv{animation:rvout .8s .3s forwards ease-in}
+.untie .g-rh{animation:rhout .8s .3s forwards ease-in}
+@keyframes bowfly{to{transform:translate(90px,-260px) rotate(600deg) scale(.5);opacity:0}}
+@keyframes rvout{to{transform:translateY(140%)}}
+@keyframes rhout{to{transform:translateX(140%)}}
+.open .g-top{transform:translate(60px,-190px) rotate(30deg);opacity:0}
+.gift.gone{animation:none;transform:translateY(90px) scale(.8);transition:opacity .8s,transform .8s}
+.content{position:relative;z-index:3;min-height:100%;display:flex;flex-direction:column;align-items:center;gap:8px;padding:34px 16px 90px;text-align:center}
+.pt{position:relative;width:clamp(120px,34vw,160px);aspect-ratio:1;border-radius:50%;border:6px solid #fff;background:linear-gradient(135deg,var(--c3),var(--c1)) center/cover;box-shadow:0 10px 30px #0006,0 0 0 9px #fff3;display:grid;place-items:center;font-size:4rem;opacity:0;margin-top:56px}
+.pt.show{opacity:1}
+.hatw{position:absolute;left:50%;top:-62px;width:70px;height:78px;margin-left:-35px;transform:rotate(14deg);transform-origin:50% 100%}
+.hat{position:absolute;inset:0;background:repeating-linear-gradient(135deg,var(--c3) 0 10px,var(--c1) 10px 20px);clip-path:polygon(50% 0,100% 100%,0 100%)}
+.pom{position:absolute;left:50%;top:-9px;width:18px;height:18px;margin-left:-9px;border-radius:50%;background:#fff;box-shadow:0 2px 6px #0005}
+.tt{font:400 clamp(1.7rem,7vw,2.5rem) 'Pacifico';text-shadow:0 3px 0 var(--c1),0 6px 16px #0006;opacity:0;margin-top:8px}
+.tt.show{animation:fadeup .8s both}
+@keyframes fadeup{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+.nm{font:800 clamp(2.4rem,11vw,4.2rem)/1 'Baloo 2';text-shadow:0 4px 0 var(--c1),0 8px 18px #0007;overflow-wrap:anywhere}
+.nm span{display:inline-block;opacity:0;white-space:pre}
+.nm.show span{animation:letter .7s calc(var(--i)*.06s) both cubic-bezier(.3,1.6,.5,1)}
+@keyframes letter{from{opacity:0;transform:translateY(-70px) scale(.3) rotate(-30deg)}to{opacity:1;transform:none}}
+.age{display:inline-block;background:#fff;color:var(--ink);font-weight:800;padding:0 20px;border-radius:999px;border:3px solid var(--ink);box-shadow:3px 3px 0 var(--ink);opacity:0;transform:rotate(-3deg)}
+.age.show{animation:popin .6s both}
+@keyframes popin{0%{opacity:0;transform:scale(.2) rotate(-20deg)}70%{opacity:1;transform:scale(1.2) rotate(-3deg)}100%{opacity:1;transform:scale(1) rotate(-3deg)}}
+.cakew{position:relative;width:min(80vw,330px);opacity:0;margin-top:6px}
+.cakew svg{display:block;width:100%;filter:drop-shadow(0 14px 14px #0006)}
+.cakew.show{animation:cakein 1.1s cubic-bezier(.2,1.2,.4,1) both}
+@keyframes cakein{from{opacity:0;transform:translateY(130px) scale(.6)}to{opacity:1;transform:none}}
+.flame{transform-box:fill-box;transform-origin:50% 100%;animation:flick .3s infinite alternate}
+@keyframes flick{to{transform:scale(.9,1.12) rotate(3deg)}}
+.out .fl{opacity:0;transition:opacity .5s}
+.puff{position:absolute;width:12px;height:12px;border-radius:50%;background:#fffc;pointer-events:none;animation:puff 1.8s forwards}
+@keyframes puff{to{transform:translate(var(--dx),-90px) scale(4);opacity:0}}
+.blowwrap{opacity:0;transition:opacity .6s;min-height:56px;font-weight:800;font-size:1.2rem;text-shadow:0 2px 8px #0008}
+.blowwrap.show{opacity:1}
+.mc{width:min(92vw,520px);background:#fffdf7;color:var(--ink);border-radius:20px;padding:22px 20px;border:3px solid var(--ink);box-shadow:6px 6px 0 var(--c1);text-align:left;opacity:0;transform:translateY(40px) rotate(-1deg);transition:opacity .9s,transform .9s;display:none}
+.mc.show{opacity:1;transform:none}
+.mc h3{margin:0 0 6px;font:800 1.5rem/1.15 'Baloo 2'}
+.mc p{margin:0 0 14px}
+.mc .cu{font-size:1.6rem;line-height:1.35;min-height:1.4em;white-space:pre-wrap;color:var(--c1);overflow-wrap:anywhere;margin-bottom:10px}
+.mc .sg{text-align:right;font:400 1.6rem 'Pacifico'}
+.balloon{position:fixed;bottom:-130px;width:48px;height:60px;border-radius:50% 50% 48% 48%;background:radial-gradient(circle at 32% 28%,#fff9,transparent 38%),var(--bc);z-index:15;pointer-events:none;animation:bfloat var(--d) var(--dl) ease-in forwards}
+.balloon:after{content:"";position:absolute;left:50%;top:100%;width:2px;height:60px;background:#fff9}
+@keyframes bfloat{to{transform:translate(var(--sx),-135vh) rotate(8deg)}}
+.flash{position:fixed;left:50%;top:50%;width:20px;height:20px;margin:-10px;border-radius:50%;background:#fff;z-index:25;pointer-events:none;animation:flash .9s forwards}
+@keyframes flash{to{transform:scale(90);opacity:0}}
+@keyframes shk{20%{transform:translate(-9px,4px)}40%{transform:translate(8px,-5px)}60%{transform:translate(-5px,3px)}80%{transform:translate(4px,-2px)}}
+.shake{animation:shk .5s}
+canvas.fx{position:fixed;inset:0;pointer-events:none;z-index:20}
+.snd{position:fixed;top:10px;right:10px;z-index:40;width:42px;height:42px;border-radius:50%;border:2.5px solid var(--ink);background:#fff;box-shadow:2px 2px 0 var(--ink);cursor:pointer;font-size:1.1rem}
+/* ===== Kursor kue animatif ===== */
+html.cc,html.cc *{cursor:none!important}
+html.cc input[type=text],html.cc input[type=email],html.cc input[type=password],html.cc input[type=date],html.cc input[type=number],html.cc textarea{cursor:text!important}
+html.cc.nocc,html.cc.nocc *{cursor:auto!important}
+#ck{position:fixed;left:0;top:0;width:46px;height:52px;margin:-6px 0 0 -23px;pointer-events:none;z-index:2147483000;transform-origin:23px 42px;opacity:0;transition:opacity .2s}
+#ck.on{opacity:1}
+#ck.nocc{display:none}
+#ck svg{width:100%;height:100%;display:block;transform-origin:50% 90%;transition:transform .18s cubic-bezier(.3,1.6,.5,1);filter:drop-shadow(0 3px 2px #0004)}
+#ck.hov svg{transform:scale(1.35) rotate(-6deg)}
+#ck.dn svg{transform:scale(.78,1.18)}
+.ckflame{transform-box:fill-box;transform-origin:50% 100%;animation:flick .25s infinite alternate}
+.sp{position:fixed;width:4px;height:9px;border-radius:2px;pointer-events:none;z-index:2147482990;animation:spr .9s ease-out forwards}
+@keyframes spr{to{transform:translate(var(--dx),46px) rotate(var(--r));opacity:0}}
+.cr{position:fixed;width:7px;height:7px;border-radius:50%;pointer-events:none;z-index:2147482990;animation:crb .6s ease-out forwards}
+@keyframes crb{to{transform:translate(var(--dx),var(--dy));opacity:0}}
+@media(prefers-reduced-motion:reduce){.gift,.hint,.bg i,.ckflame{animation:none}}
+</style>
+</head>
+<body>
+
+<header class="top" id="top">
+  <span class="brand">Kejutan Ultah</span>
+  <button class="btn sm on" data-tab="make">Buat kejutan</button>
+  <button class="btn sm" data-tab="mine">Arsip saya</button>
+  <span id="auth"></span>
+</header>
+
+<main id="app">
+  <section id="make">
+    <h1>Bikin kado digital yang meledak jadi pesta 🎉</h1>
+    <p class="sub">Kado dibuka, konfeti meledak, wajah si ulang tahun muncul, lalu kue unik tiba lengkap dengan lilin umurnya.</p>
+    <div class="grid">
+      <div>
+        <div class="box">
+          <h3>Siapa yang berulang tahun?</h3>
+          <label>Nama</label><input type="text" id="name" maxlength="40" placeholder="Rani">
+          <div class="row">
+            <div><label>Tanggal lahir</label><input type="date" id="bdate"></div>
+            <div><label>Ulang tahun tahun</label><input type="number" id="byear" min="1900" max="2200"></div>
+          </div>
+          <label>Dari (pengirim)</label><input type="text" id="from" maxlength="40" placeholder="Sahabatmu, Budi">
+          <label>Warna tema</label>
+          <select id="theme"><option value="pesta">Pesta (pink &amp; oranye)</option><option value="laut">Laut (biru &amp; kuning)</option><option value="senja">Senja (ungu &amp; pink)</option><option value="mint">Mint (hijau &amp; oranye)</option><option value="gelap">Neon malam</option></select>
+        </div>
+        <div class="box">
+          <h3>Kue khusus untuknya</h3>
+          <p class="note" style="margin:0">Bentuk dan warna kue dibuat unik dari nama. Tidak suka? Acak lagi.</p>
+          <div id="cakePrev"></div>
+          <div class="row" style="justify-content:center;margin-top:8px"><button class="btn sm" id="seedBtn" type="button">Acak kue 🎲</button></div>
+        </div>
+        <div class="box">
+          <h3>Foto wajah (muncul dari kado)</h3>
+          <input type="file" id="photoFile" accept="image/*"><img id="photoTh" class="thumb" hidden>
+        </div>
+      </div>
+      <div>
+        <div class="box">
+          <h3>Latar belakang</h3>
+          <select id="bgType"><option value="none">Polos (gradasi tema)</option><option value="photo">Foto</option><option value="video">Video pendek</option></select>
+          <div id="bgPhotoBox" hidden><input type="file" id="bgPhotoFile" accept="image/*" style="margin-top:8px"><img id="bgPhotoTh" class="thumb" hidden></div>
+          <div id="bgVideoBox" hidden><input type="file" id="bgVideoFile" accept="video/mp4,video/webm" style="margin-top:8px"><video id="bgVideoTh" class="thumb" muted controls hidden></video>
+            <p class="note">MP4 atau WebM, maksimal 6 MB (sekitar 10 detik). Video diputar tanpa suara.</p></div>
+        </div>
+        <div class="box">
+          <h3>Ucapan darimu</h3>
+          <p class="note" style="margin:0">Kalimat otomatis menyesuaikan umurnya. Tulis ucapan pribadimu di sini dan akan tampil setelah lilin ditiup.</p>
+          <textarea id="customMsg" maxlength="600" placeholder="Terima kasih sudah jadi sahabat terbaik…"></textarea>
+          <label>Gaya tulisan</label>
+          <select id="font"><option>Caveat</option><option>Pacifico</option><option>Baloo 2</option><option>Lora</option><option>Dancing Script</option><option>Chewy</option></select>
+          <label>Email si ulang tahun (opsional, link dikirim saat disimpan)</label><input type="email" id="emailTo" placeholder="rani@email.com">
+        </div>
+        <div class="row">
+          <button class="btn lg" id="btnPreview">Lihat kejutan</button>
+          <button class="btn pri lg" id="btnSave">Simpan dan buat link</button>
+        </div>
+        <div class="res" id="result" hidden></div>
+      </div>
+    </div>
+  </section>
+  <section id="mine" hidden>
+    <h1>Arsip kejutan</h1>
+    <p class="sub" id="mineSub">Kejutan ulang tahun yang sudah kamu simpan.</p>
+    <div class="box" id="mineList"></div>
+  </section>
+</main>
+
+<div id="viewer" hidden></div>
+<div id="pv" hidden><button class="btn sm pvx" id="pvClose">Tutup preview</button><div id="pvHost"></div></div>
+
+<dialog id="authDlg">
+  <div class="seg"><button class="btn on" data-m="login">Masuk</button><button class="btn" data-m="register">Daftar</button></div>
+  <form method="dialog" onsubmit="return false">
+    <div id="fUser"><label>Username</label><input type="text" id="aUser" autocomplete="username"></div>
+    <div id="fMail"><label>Email</label><input type="email" id="aMail" autocomplete="email"></div>
+    <label id="lId">Username atau email</label><input type="text" id="aId" autocomplete="username">
+    <label>Password</label><input type="password" id="aPass" autocomplete="current-password">
+    <div class="row" style="margin-top:14px"><button class="btn pri" id="aGo" type="button">Masuk</button><button class="btn" type="button" id="aCancel">Batal</button></div>
+  </form>
+</dialog>
+<div id="toast"></div>
+
+<script>
+/* === KONFIGURASI: alamat Worker (sama dengan index.html) === */
+const API_URL = 'https://amplop-kasih.ppbltahun2025.workers.dev/api';
+const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
+const viewLink = id => location.origin + location.pathname + '?v=' + id;
+const THEMES = {
+  pesta:{c1:'#ff3d81',c2:'#ff9a3c',c3:'#ffd23f'}, laut:{c1:'#00a6d6',c2:'#2b59c3',c3:'#ffd166'},
+  senja:{c1:'#8e44ad',c2:'#ff6b9d',c3:'#ffd166'}, mint:{c1:'#1fb5a5',c2:'#4cc36d',c3:'#ff9f1c'}, gelap:{c1:'#6c5ce7',c2:'#0b1d51',c3:'#00e5d0'}
+};
+const FONTS = ['Caveat','Pacifico','Baloo 2','Lora','Dancing Script','Chewy'];
+
+/*PURE-START*/
+function hash(str){let h=2166136261;for(const c of String(str)){h^=c.charCodeAt(0);h=Math.imul(h,16777619)}return h>>>0}
+function rng(seed){let a=seed>>>0;return()=>{a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
+
+function cakeSVG(name,age,seed){
+  const R=rng(hash(String(name).toLowerCase().trim()+'|'+seed)),pk=a=>a[R()*a.length|0];
+  const FR=['#ff8fb3','#7fe0c3','#b79cff','#ffb27a','#7cc5ff','#ffe066','#8b5a3c','#ff6b81'];
+  const SP=['#f7dc9b','#6b4226','#e86a6a','#b7d98a','#f3b6a0'];
+  const L=2+(R()*2|0),fr=pk(FR),fr2=pk(FR),sp=pk(SP),pat=pk(['dots','stripes','hearts','zig','none']),dr=pk(['wave','drops','flat']);
+  const tp=[pk(['🍓','🍒','🍑','🫐']),pk(['⭐','🌸','🍬','🍫'])],pl=pk(['#ffffff','#ffe3ef','#e3f6ff','#fff3c4']),cc=pk(['#ff4d6d','#4dabf7','#ffd43b','#69db7c','#9775fa']);
+  const W=[224,176,128],H=54;
+  let s='<svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">';
+  s+='<ellipse cx="150" cy="278" rx="142" ry="16" fill="'+pl+'" stroke="#0002"/><ellipse cx="150" cy="274" rx="122" ry="10" fill="#0001"/>';
+  for(let i=0;i<L;i++){
+    const w=W[i],x=150-w/2,y=270-(i+1)*H,f=i%2?fr2:fr,n=Math.floor(w/20);
+    s+='<rect x="'+x+'" y="'+y+'" width="'+w+'" height="'+H+'" rx="9" fill="'+sp+'"/>';
+    for(let k=0;k<n;k++){
+      const px=x+14+k*((w-28)/Math.max(1,n-1));
+      if(pat==='dots')s+='<circle cx="'+px+'" cy="'+(y+38)+'" r="3.2" fill="#fff" opacity=".85"/>';
+      else if(pat==='stripes')s+='<rect x="'+px+'" y="'+(y+26)+'" width="5" height="'+(H-34)+'" rx="2.5" fill="#fff" opacity=".55"/>';
+      else if(pat==='hearts'&&k%2===0)s+='<text x="'+px+'" y="'+(y+44)+'" font-size="16" text-anchor="middle" fill="#fff" opacity=".9">♥</text>';
+    }
+    if(pat==='zig'){let pts='';for(let k=0;k<=n;k++)pts+=(x+8+k*((w-16)/n))+','+(k%2?y+34:y+46)+' ';s+='<polyline points="'+pts+'" fill="none" stroke="#fff" stroke-width="3" opacity=".75" stroke-linejoin="round"/>'}
+    s+='<rect x="'+x+'" y="'+y+'" width="12" height="'+H+'" rx="6" fill="#fff" opacity=".16"/>';
+    s+='<rect x="'+(x-5)+'" y="'+(y-3)+'" width="'+(w+10)+'" height="15" rx="7.5" fill="'+f+'"/>';
+    for(let px=x+12,k=0;px<x+w-8;px+=(dr==='drops'?24:22),k++){
+      if(dr==='wave')s+='<circle cx="'+px+'" cy="'+(y+13)+'" r="8" fill="'+f+'"/>';
+      else if(dr==='drops')s+='<rect x="'+(px-5)+'" y="'+(y+8)+'" width="11" height="'+(10+(R()*18|0))+'" rx="5.5" fill="'+f+'"/>';
+    }
+    s+='<text x="'+(x+14)+'" y="'+(y+8)+'" font-size="20" text-anchor="middle">'+tp[i%2]+'</text><text x="'+(x+w-14)+'" y="'+(y+8)+'" font-size="20" text-anchor="middle">'+tp[(i+1)%2]+'</text>';
+  }
+  const top=270-L*H,tw=W[L-1];
+  for(let i=0;i<16;i++){const px=150-tw/2+8+R()*(tw-16);s+='<rect x="'+px.toFixed(1)+'" y="'+(top-1+R()*8).toFixed(1)+'" width="7" height="3" rx="1.5" fill="'+pk(['#fff','#ffd23f','#ff3d81','#00b4d8'])+'" transform="rotate('+(R()*180|0)+' '+px.toFixed(1)+' '+(top+3)+')"/>'}
+  const dg=String(Math.max(0,age)).split(''),cw=22,gap=10,total=dg.length*cw+(dg.length-1)*gap,sx=150-total/2;
+  dg.forEach((d,i)=>{
+    const cx=sx+i*(cw+gap)+cw/2,cy=top-52;
+    s+='<rect x="'+(cx-cw/2)+'" y="'+cy+'" width="'+cw+'" height="46" rx="5" fill="'+cc+'" stroke="#0003"/>'
+     +'<text x="'+cx+'" y="'+(cy+33)+'" font-size="26" font-weight="800" text-anchor="middle" fill="#fff" font-family="Baloo 2,sans-serif">'+d+'</text>'
+     +'<g class="fl" transform="translate('+cx+' '+(cy-2)+')"><circle r="15" cy="-12" fill="#ffd60a" opacity=".25"/><path class="flame" d="M0-26C9-15 9-4 0 0C-9-4-9-15 0-26Z" fill="#ffb703"/><path class="flame" d="M0-16C4-10 4-5 0-2C-4-5-4-10 0-16Z" fill="#fff3b0"/></g>';
+  });
+  return s+'</svg>';
+}
+
+const MS=[
+ [a=>a<=1,'Ulang tahun pertama!','Satu tahun penuh senyum, tangis, dan tawa. Tumbuhlah sehat dan bahagia, {n}!'],
+ [a=>a<=5,'Hore, {a} tahun!','Usia {a} tahun itu penuh rasa ingin tahu. Semoga {n} tumbuh sehat, ceria, dan selalu dikelilingi pelukan hangat.'],
+ [a=>a<=12,'{a} tahun, makin hebat!','Semoga {n} makin pintar, berani mencoba hal baru, dan punya banyak teman seru di tahun ke-{a} ini.'],
+ [a=>a<=16,'Usia {a}, masa paling seru!','Selamat memasuki usia {a}, {n}. Kejar mimpimu, nikmati prosesnya, dan jangan takut salah karena dari situ kamu tumbuh.'],
+ [a=>a===17,'Sweet seventeen!','Tujuh belas tahun, {n}! Pintu-pintu baru mulai terbuka. Semoga setiap langkahmu dipenuhi keberanian dan tawa.'],
+ [a=>a===18,'Selamat datang di usia 18!','Delapan belas tahun, {n}. Kamu resmi melangkah ke dunia dewasa. Semoga bijak memilih jalan dan tetap menjadi dirimu sendiri.'],
+ [a=>a<=24,'{a} tahun, waktunya berani!','Di usia {a}, dunia sedang menunggumu mencoba. Belajar, berkarya, jatuh dan bangun itu bagian dari serunya, {n}.'],
+ [a=>a===25,'Seperempat abad!','Dua puluh lima tahun, {n}! Perjalananmu baru dimulai. Semoga makin mantap dalam karier, cinta, dan mimpi.'],
+ [a=>a<=29,'{a} tahun, makin matang!','Usia {a} adalah masa menata arah. Semoga {n} makin mantap melangkah dan dikelilingi orang-orang baik.'],
+ [a=>a===30,'Welcome to the 30s!','Tiga puluh, {n}! Bukan akhir kesenangan, tapi awal versi terbaikmu. Semoga sehat, lapang rezeki, dan bahagia.'],
+ [a=>a<=39,'{a} tahun, makin bersinar!','Di usia {a}, pengalaman jadi kekuatanmu. Semoga {n} selalu sehat, harmonis bersama orang tersayang, dan sukses dalam segala usaha.'],
+ [a=>a===40,'Empat puluh, makin berkelas!','Selamat {a} tahun, {n}! Hidup berlanjut dengan kebijaksanaan yang lebih dalam. Semoga sehat dan penuh berkah.'],
+ [a=>a<=49,'{a} tahun yang penuh makna','Semoga di usia {a} ini {n} dilimpahi kesehatan, ketenangan hati, dan keluarga yang selalu hangat.'],
+ [a=>a===50,'Setengah abad yang indah!','Lima puluh tahun, {n}! Terima kasih untuk semua cerita dan teladan. Semoga sehat, bahagia, dan diberkahi selalu.'],
+ [a=>a<=59,'{a} tahun penuh berkah','Usia {a} adalah buah dari perjalanan panjang. Semoga {n} sehat selalu, tenang, dan dikelilingi orang-orang tercinta.'],
+ [a=>a===60,'Enam dekade penuh cerita!','Enam puluh tahun, {n}. Semoga selalu sehat, bahagia bersama keluarga, dan diberi umur yang berkah.'],
+ [a=>true,'{a} tahun yang luar biasa!','Usia {a} tahun adalah bukti perjalanan hidup yang indah. Semoga {n} selalu sehat, bahagia, dan dikelilingi kasih sayang.']
+];
+const DOA=['Semoga semua harapanmu satu per satu terwujud.','Semoga tahun ini membawa lebih banyak alasan untuk tersenyum.','Terima kasih sudah menjadi bagian dari cerita kami.','Tiup lilinnya dan simpan satu harapan terbaik di hati.'];
+function ageOf(card){const by=parseInt(String(card.birthDate||'').slice(0,4),10);return by?Math.max(0,(card.year||new Date().getFullYear())-by):0}
+function ageMsg(age,name,seed){
+  const r=MS.find(x=>x[0](age)),R=rng(hash(name+seed)),f=t=>t.replace(/\{a\}/g,age).replace(/\{n\}/g,name);
+  return {t:f(r[1]),m:f(r[2])+' '+DOA[R()*DOA.length|0]};
+}
+/*PURE-END*/
+
+/* ---------- util ---------- */
+let toastT;
+function toast(m){const t=$('#toast');t.textContent=m;t.classList.add('on');clearTimeout(toastT);toastT=setTimeout(()=>t.classList.remove('on'),3400)}
+let me=JSON.parse(localStorage.getItem('ak_me')||'null');
+function setMe(u){me=u;u?localStorage.setItem('ak_me',JSON.stringify(u)):localStorage.removeItem('ak_me');drawAuth()}
+async function api(action,data={}){
+  const body={action,...data,appBase:location.origin+location.pathname.replace(/\/[^\/]*$/,''),appPage:location.pathname.split('/').pop()};if(me)body.sessionToken=me.sessionToken;
+  try{
+    const r=await fetch(API_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});
+    const j=await r.json();
+    if(!j.ok&&/Sesi tidak valid/.test(j.error||''))setMe(null);
+    return j;
+  }catch(e){return {ok:false,error:'Tidak bisa menghubungi Worker. Cek API_URL, deploy Worker, dan CORS.'}}
+}
+function readImg(file,max,q){return new Promise((res,rej)=>{
+  const img=new Image(),u=URL.createObjectURL(file);
+  img.onload=()=>{const k=Math.min(1,max/Math.max(img.width,img.height)),w=Math.round(img.width*k),h=Math.round(img.height*k);
+    const c=document.createElement('canvas');c.width=w;c.height=h;const x=c.getContext('2d');x.fillStyle='#fff';x.fillRect(0,0,w,h);x.drawImage(img,0,0,w,h);
+    URL.revokeObjectURL(u);res(c.toDataURL('image/jpeg',q))};
+  img.onerror=()=>rej(new Error('Gambar tidak bisa dibaca'));img.src=u})}
+const readFile=f=>new Promise((res,rej)=>{const r=new FileReader();r.onload=()=>res(r.result);r.onerror=()=>rej(new Error('File tidak bisa dibaca'));r.readAsDataURL(f)});
+
+/* ---------- suara ---------- */
+const SND={ctx:null,on:localStorage.bd_snd!=='off'};
+function actx(){if(!SND.ctx)SND.ctx=new (window.AudioContext||window.webkitAudioContext)();if(SND.ctx.state==='suspended')SND.ctx.resume();return SND.ctx}
+function pop(){if(!SND.on)return;const c=actx(),b=c.createBuffer(1,c.sampleRate*.35,c.sampleRate),d=b.getChannelData(0);
+  for(let i=0;i<d.length;i++)d[i]=(Math.random()*2-1)*Math.pow(1-i/d.length,3);
+  const s=c.createBufferSource(),g=c.createGain();g.gain.value=.5;s.buffer=b;s.connect(g);g.connect(c.destination);s.start()}
+function tune(){if(!SND.on)return;const c=actx(),N=[[67,.75],[67,.25],[69,1],[67,1],[72,1],[71,2],[67,.75],[67,.25],[69,1],[67,1],[74,1],[72,2],[67,.75],[67,.25],[79,1],[76,1],[72,1],[71,1],[69,1],[77,.75],[77,.25],[76,1],[72,1],[74,1],[72,2]];
+  let t=c.currentTime+.1;N.forEach(([m,b])=>{const o=c.createOscillator(),g=c.createGain();o.type='triangle';o.frequency.value=440*Math.pow(2,(m-69)/12);
+    g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(.16,t+.02);g.gain.exponentialRampToValueAtTime(.0001,t+b*.42+.5);
+    o.connect(g);g.connect(c.destination);o.start(t);o.stop(t+b*.42+.55);t+=b*.42})}
+
+/* ---------- konfeti ---------- */
+function burst(cv,x,y,n,a0,a1,sp){
+  const ps=cv._p||(cv._p=[]),cols=['#ff3d81','#ffd23f','#00b4d8','#7bd88f','#ffffff','#b79cff','#ff9a3c'];
+  for(let i=0;i<n;i++){const a=a0+Math.random()*(a1-a0),v=(.35+Math.random())*sp;
+    ps.push({x,y,vx:Math.cos(a)*v,vy:Math.sin(a)*v,w:7+Math.random()*8,h:3+Math.random()*5,r:Math.random()*6,vr:(Math.random()-.5)*.4,c:cols[Math.random()*cols.length|0],t:0,life:130+Math.random()*100,k:Math.random()*4|0,tilt:Math.random()*6})}
+  if(!cv._run){cv._run=1;loop(cv)}
+}
+function loop(cv){
+  const x=cv.getContext('2d'),ps=cv._p;x.clearRect(0,0,cv.width,cv.height);
+  for(let i=ps.length-1;i>=0;i--){const p=ps[i];p.vx*=.985;p.vy=p.vy*.985+.18;p.x+=p.vx;p.y+=p.vy;p.r+=p.vr;p.t++;p.tilt+=.2;
+    if(p.t>p.life||p.y>cv.height+30){ps.splice(i,1);continue}
+    x.save();x.globalAlpha=Math.min(1,(p.life-p.t)/30);x.translate(p.x,p.y);x.rotate(p.r);x.fillStyle=x.strokeStyle=p.c;const sc=Math.cos(p.tilt);
+    if(p.k===0){x.scale(1,sc);x.fillRect(-p.w/2,-p.h/2,p.w,p.h)}
+    else if(p.k===1){x.beginPath();x.arc(0,0,p.h,0,6.3);x.fill()}
+    else if(p.k===2){x.lineWidth=2.5;x.beginPath();x.moveTo(-14,0);x.quadraticCurveTo(0,10*sc,14,0);x.stroke()}
+    else{x.beginPath();for(let j=0;j<10;j++){const rr=j%2?p.h*.9:p.h*2.2,a=j*Math.PI/5;x.lineTo(Math.cos(a)*rr,Math.sin(a)*rr)}x.closePath();x.fill()}
+    x.restore()}
+  if(ps.length)requestAnimationFrame(()=>loop(cv));else cv._run=0;
+}
+function balloons(root,n){
+  const cols=['#ff3d81','#ffd23f','#00b4d8','#7bd88f','#b79cff','#ff9a3c'];
+  for(let i=0;i<n;i++){const b=document.createElement('div');b.className='balloon';
+    b.style.cssText=`left:${3+Math.random()*90}%;--bc:${cols[i%cols.length]};--sx:${Math.random()*120-60}px;--d:${6+Math.random()*4}s;--dl:${Math.random()*1.2}s`;
+    b.onanimationend=()=>b.remove();root.appendChild(b)}
+}
+function explode(root){
+  const cv=root.querySelector('canvas.fx'),g=root.querySelector('.gift').getBoundingClientRect(),w=cv.width,h=cv.height;
+  burst(cv,g.left+g.width/2,g.top+g.height*.35,230,0,6.283,13);
+  setTimeout(()=>{burst(cv,0,h*.95,90,-1.3,-.45,17);burst(cv,w,h*.95,90,-2.7,-1.85,17)},350);
+  balloons(root,16);pop();
+  const f=document.createElement('div');f.className='flash';root.appendChild(f);setTimeout(()=>f.remove(),1000);
+  const c=root.querySelector('.content');c.classList.add('shake');setTimeout(()=>c.classList.remove('shake'),600);
+}
+
+/* ---------- kejutan ---------- */
+function mount(host,card){
+  BGM.stop();host.replaceChildren();
+  const t=THEMES[card.theme]||THEMES.pesta,age=ageOf(card),name=card.name||'Kamu',root=document.createElement('div');
+  root.className='bday s0';Object.entries(t).forEach(([k,v])=>root.style.setProperty('--'+k,v));
+  root.innerHTML=`<div class="bg"></div><div class="for"></div><div class="hint">Ketuk kado untuk membukanya 🎁</div>
+  <div class="gift"><div class="g-body"><i class="g-rv"></i><i class="g-rh"></i></div><div class="g-top"><div class="g-lid"><i class="g-rv"></i></div><div class="g-bow"><i class="loop l1"></i><i class="loop l2"></i><i class="knot"></i></div></div></div>
+  <div class="content"><div class="pt"><div class="hatw"><div class="hat"></div><div class="pom"></div></div></div>
+  <div class="tt">Selamat Ulang Tahun</div><div class="nm"></div><div class="age"></div><div class="cakew"></div>
+  <div class="blowwrap"><button class="btn pri lg blow">Tiup lilin 🎂</button></div>
+  <div class="mc"><h3></h3><p class="am"></p><div class="cu"></div><div class="sg"></div><button class="btn sm again">Putar ulang 🎁</button></div></div>
+  <button class="snd" aria-label="Suara"></button><canvas class="fx"></canvas>`;
+  const q=s=>root.querySelector(s),ok=u=>typeof u==='string'&&u.startsWith('data:');
+  q('.for').textContent='Kejutan untuk '+name;
+  const bg=q('.bg');
+  if(card.bgType==='video'&&ok(card.bgVideo)&&card.bgVideo.startsWith('data:video/')){const v=document.createElement('video');v.muted=true;v.loop=true;v.autoplay=true;v.playsInline=true;v.src=card.bgVideo;bg.appendChild(v);v.play().catch(()=>{})}
+  else if(card.bgType==='photo'&&ok(card.bgPhoto)&&card.bgPhoto.startsWith('data:image/')){const i=document.createElement('i');i.style.backgroundImage='url("'+card.bgPhoto+'")';bg.appendChild(i)}
+  const pt=q('.pt');
+  if(ok(card.photo)&&card.photo.startsWith('data:image/'))pt.style.backgroundImage='url("'+card.photo+'")';else pt.insertAdjacentText('afterbegin','🥳');
+  [...name].forEach((ch,i)=>{const s=document.createElement('span');s.textContent=ch;s.style.setProperty('--i',i);q('.nm').appendChild(s)});
+  q('.age').textContent='Ke-'+age+' · '+(card.year||new Date().getFullYear());
+  q('.cakew').innerHTML=cakeSVG(name,age,card.cakeSeed||0);
+  const cv=q('canvas.fx');cv.width=innerWidth;cv.height=innerHeight;
+  const snd=q('.snd'),drawSnd=()=>snd.textContent=SND.on?'🔊':'🔇';drawSnd();
+  snd.onclick=()=>{SND.on=!SND.on;localStorage.bd_snd=SND.on?'on':'off';drawSnd();if(!SND.on)BGM.stop();else if(root.dataset.started)BGM.play()};
+  host.appendChild(root);
+
+  let started=false;
+  const T=(fn,ms)=>setTimeout(fn,ms);
+  q('.gift').onclick=()=>{
+    if(started)return;started=true;root.dataset.started=1;try{actx()}catch(e){}
+    const g=q('.gift');q('.hint').classList.add('gone');g.classList.add('untie');
+    T(()=>g.classList.add('open'),1000);
+    T(()=>{explode(root);popPortrait(root)},1450);
+    T(()=>{g.classList.add('gone');root.classList.remove('s0');q('.for').classList.add('gone')},1800);
+    T(()=>{q('.tt').classList.add('show');q('.nm').classList.add('show')},2900);
+    T(()=>q('.age').classList.add('show'),3800);
+    T(()=>{q('.cakew').classList.add('show');BGM.play()},4400);
+    T(()=>q('.blowwrap').classList.add('show'),5700);
+  };
+  q('.blow').onclick=()=>{
+    const bw=q('.blowwrap'),cw=q('.cakew'),cr=cw.getBoundingClientRect();
+    bw.textContent='Make a wish… ✨';
+    root.querySelectorAll('.fl').forEach(f=>{const r=f.getBoundingClientRect();
+      for(let i=0;i<3;i++){const p=document.createElement('i');p.className='puff';p.style.cssText=`left:${r.left-cr.left+r.width/2}px;top:${r.top-cr.top}px;--dx:${Math.random()*40-20}px;animation-delay:${i*.18}s`;cw.appendChild(p)}});
+    cw.classList.add('out');
+    T(()=>{
+      bw.textContent='';pop();
+      burst(cv,cv.width/2,cv.height*.45,200,0,6.283,12);balloons(root,10);
+      const mc=q('.mc'),m=ageMsg(age,name,card.cakeSeed||0);
+      q('h3').textContent=m.t;q('.am').textContent=m.m;
+      const cu=q('.cu');
+      if(card.customMsg){cu.style.fontFamily=FONTS.includes(card.font)?`'${card.font}',cursive`:'cursive'}else cu.remove();
+      q('.sg').textContent=card.from?'— '+card.from:'';
+      mc.style.display='block';requestAnimationFrame(()=>requestAnimationFrame(()=>mc.classList.add('show')));
+      T(()=>mc.scrollIntoView({behavior:'smooth',block:'center'}),500);
+      if(card.customMsg){let i=0;const txt=card.customMsg;T(function tw(){cu.textContent=txt.slice(0,++i);if(i<txt.length)setTimeout(tw,45)},1400)}
+    },1700);
+  };
+  q('.again').onclick=()=>mount(host,card);
+}
+function popPortrait(root){
+  const pt=root.querySelector('.pt'),g=root.querySelector('.gift').getBoundingClientRect(),p=pt.getBoundingClientRect();
+  const dx=g.left+g.width/2-(p.left+p.width/2),dy=g.top+g.height*.4-(p.top+p.height/2);
+  pt.classList.add('show');
+  pt.animate([{transform:`translate(${dx}px,${dy}px) scale(.15)`,opacity:0},{opacity:1,offset:.15},{transform:'translate(0,-40px) scale(1.2)',offset:.7},{transform:'none',opacity:1}],{duration:1500,easing:'cubic-bezier(.2,.8,.3,1)'});
+}
+
+/* ---------- generator ---------- */
+let photo='',bgPhoto='',bgVideo='',seed=0,editId=null;
+$('#byear').value=new Date().getFullYear();
+function previewCake(){
+  const n=$('#name').value.trim()||'Nama',by=parseInt(($('#bdate').value||'').slice(0,4),10),y=parseInt($('#byear').value,10)||new Date().getFullYear();
+  $('#cakePrev').innerHTML=cakeSVG(n,by?Math.max(0,y-by):0,seed);
+}
+['#name','#bdate','#byear'].forEach(s=>$(s).addEventListener('input',previewCake));
+$('#seedBtn').onclick=()=>{seed=(seed+1+Math.random()*50|0)%10000;previewCake()};
+previewCake();
+function pick(inp,th,fn){inp.onchange=async()=>{const f=inp.files[0];if(!f)return;try{const u=await fn(f);th.src=u;th.hidden=false}catch(e){toast(e.message)}}}
+pick($('#photoFile'),$('#photoTh'),async f=>photo=await readImg(f,800,.85));
+pick($('#bgPhotoFile'),$('#bgPhotoTh'),async f=>bgPhoto=await readImg(f,1400,.78));
+pick($('#bgVideoFile'),$('#bgVideoTh'),async f=>{
+  if(!/^video\/(mp4|webm)$/.test(f.type))throw new Error('Gunakan video MP4 atau WebM');
+  if(f.size>6*1024*1024)throw new Error('Video maksimal 6 MB. Potong dulu atau kecilkan resolusinya.');
+  return bgVideo=await readFile(f)});
+function bgUI(){const v=$('#bgType').value;$('#bgPhotoBox').hidden=v!=='photo';$('#bgVideoBox').hidden=v!=='video'}
+$('#bgType').onchange=bgUI;bgUI();
+function formData(){return{kind:'birthday',theme:$('#theme').value,name:$('#name').value.trim(),birthDate:$('#bdate').value,year:parseInt($('#byear').value,10)||new Date().getFullYear(),
+  from:$('#from').value.trim(),cakeSeed:seed,font:$('#font').value,customMsg:$('#customMsg').value.trim(),photo,bgType:$('#bgType').value,bgPhoto,bgVideo}}
+function valid(d){if(!d.name||!d.birthDate){toast('Isi nama dan tanggal lahir');return false}return true}
+$('#btnPreview').onclick=()=>{const d=formData();if(!valid(d))return;$('#pv').hidden=false;document.body.style.overflow='hidden';mount($('#pvHost'),d)};
+$('#pvClose').onclick=()=>{BGM.stop();$('#pv').hidden=true;document.body.style.overflow='';$('#pvHost').replaceChildren()};
+$('#btnSave').onclick=async()=>{
+  if(!me){toast('Masuk dulu untuk menyimpan ke Drive kamu');return openAuth('login')}
+  const d=formData();if(!valid(d))return;if(!d.from)return toast('Isi nama pengirim');
+  const b=$('#btnSave');b.disabled=true;b.textContent='Menyimpan…';
+  const r=await api('saveCard',{id:editId,card:d,emailTo:$('#emailTo').value.trim()});
+  b.disabled=false;b.textContent='Simpan dan buat link';
+  if(!r.ok)return toast(r.error);
+  editId=r.id;const link=viewLink(r.id),res=$('#result');res.hidden=false;
+  res.innerHTML='<b>Tersimpan di Drive kamu.</b> <span></span> <button class="btn sm" id="cpy">Salin link</button> <a class="btn sm" target="_blank" rel="noopener">Kirim lewat WhatsApp</a>';
+  res.querySelector('span').textContent=link;
+  res.querySelector('a').href='https://wa.me/?text='+encodeURIComponent('Ada kejutan ulang tahun untukmu 🎁 '+link);
+  $('#cpy').onclick=()=>navigator.clipboard.writeText(link).then(()=>toast('Link disalin'));
+  toast(r.mailed?'Tersimpan, link terkirim ke email':'Tersimpan');
+};
+
+/* arsip */
+async function loadMine(){
+  const box=$('#mineList');
+  if(!me){box.innerHTML='<p>Masuk untuk melihat kejutan yang sudah kamu simpan.</p><button class="btn pri" id="mi">Masuk</button>';$('#mi').onclick=()=>openAuth('login');return}
+  box.textContent='Memuat…';const r=await api('listCards');
+  if(!r.ok){box.textContent=r.error;return}
+  const list=r.cards.filter(c=>c.kind==='birthday');
+  if(r.folderUrl)$('#mineSub').innerHTML='Tersimpan di <a target="_blank" rel="noopener" href="'+r.folderUrl+'">folder Drive kamu</a>.';
+  if(!list.length){box.innerHTML='<p>Belum ada kejutan. Buat yang pertama!</p>';return}
+  box.replaceChildren();
+  list.forEach(c=>{
+    const link=viewLink(c.id),it=document.createElement('div');it.className='item';
+    it.innerHTML='<div><b></b><br><small></small></div><div class="row"><a class="btn sm" target="_blank" rel="noopener">Buka</a><button class="btn sm" data-a="cp">Salin link</button><button class="btn sm" data-a="mail">Kirim email</button><button class="btn sm" data-a="ed">Edit</button><button class="btn sm" data-a="del">Hapus</button></div>';
+    it.querySelector('b').textContent=c.title;it.querySelector('small').textContent=new Date(c.createdAt).toLocaleString('id-ID');it.querySelector('a').href=link;
+    it.onclick=async e=>{const a=e.target.dataset.a;if(!a)return;
+      if(a==='cp')navigator.clipboard.writeText(link).then(()=>toast('Link disalin'));
+      if(a==='mail'){const to=prompt('Email penerima:');if(to){const x=await api('sendCard',{id:c.id,emailTo:to});toast(x.ok?'Email terkirim':x.error)}}
+      if(a==='del'&&confirm('Hapus kejutan ini?')){const x=await api('deleteCard',{id:c.id});if(x.ok){it.remove();toast('Dihapus')}else toast(x.error)}
+      if(a==='ed'){const x=await api('getCard',{id:c.id});if(!x.ok)return toast(x.error);fillForm(x.card,c.id)}};
+    box.appendChild(it)});
+}
+function fillForm(c,id){
+  editId=id;$('#name').value=c.name||'';$('#bdate').value=c.birthDate||'';$('#byear').value=c.year||new Date().getFullYear();$('#from').value=c.from||'';
+  $('#theme').value=THEMES[c.theme]?c.theme:'pesta';seed=c.cakeSeed||0;$('#customMsg').value=c.customMsg||'';$('#font').value=FONTS.includes(c.font)?c.font:'Caveat';
+  photo=c.photo||'';bgPhoto=c.bgPhoto||'';bgVideo=c.bgVideo||'';$('#bgType').value=c.bgType||'none';bgUI();
+  [['#photoTh',photo],['#bgPhotoTh',bgPhoto],['#bgVideoTh',bgVideo]].forEach(([s,u])=>{const e=$(s);e.hidden=!u;if(u)e.src=u});
+  previewCake();$('#result').hidden=true;tab('make');toast('Dimuat. Simpan untuk memperbarui link yang sama.');
+}
+
+/* tab & auth */
+function tab(n){$('#make').hidden=n!=='make';$('#mine').hidden=n!=='mine';$$('[data-tab]').forEach(b=>b.classList.toggle('on',b.dataset.tab===n));if(n==='mine')loadMine()}
+$$('[data-tab]').forEach(b=>b.onclick=()=>tab(b.dataset.tab));
+function drawAuth(){const a=$('#auth');a.replaceChildren();
+  if(me){const s=document.createElement('span');s.textContent=me.username+' ';const b=document.createElement('button');b.className='btn sm';b.textContent='Keluar';b.onclick=()=>{setMe(null);tab('make')};a.append(s,b)}
+  else{const b=document.createElement('button');b.className='btn sm';b.textContent='Masuk / Daftar';b.onclick=()=>openAuth('login');a.append(b)}}
+let am='login';
+function authMode(m){am=m;$$('.seg .btn').forEach(b=>b.classList.toggle('on',b.dataset.m===m));$('#fUser').hidden=$('#fMail').hidden=m==='login';$('#aId').hidden=$('#lId').hidden=m!=='login';$('#aGo').textContent=m==='login'?'Masuk':'Daftar'}
+function openAuth(m){authMode(m);window.ccDialog&&ccDialog(true);$('#authDlg').showModal()}
+$$('.seg .btn').forEach(b=>b.onclick=()=>authMode(b.dataset.m));
+$('#aCancel').onclick=()=>$('#authDlg').close();
+$('#aGo').onclick=async()=>{
+  const g=$('#aGo');g.disabled=true;
+  const r=am==='login'?await api('login',{identifier:$('#aId').value,password:$('#aPass').value}):await api('register',{username:$('#aUser').value,email:$('#aMail').value,password:$('#aPass').value});
+  g.disabled=false;if(!r.ok)return toast(r.error);
+  $('#authDlg').close();
+  if(am==='login'){setMe(r.user);toast('Selamat datang, '+r.user.username)}else toast(r.message);
+};
+
+/* ---------- musik latar (musics.mp3 jika ada, jika tidak nada sintetis) ---------- */
+const MUSIC_URL=new URL('musics.mp3',location.href).href;
+const BGM={el:null,mode:'',
+  async play(){if(!SND.on)return;
+    if(!this.mode){try{const r=await fetch(MUSIC_URL,{method:'HEAD'});this.mode=r.ok&&/audio|octet/.test(r.headers.get('content-type')||'')?'file':'synth'}catch(e){this.mode='synth'}}
+    if(this.mode==='file'){this.el=this.el||Object.assign(new Audio(MUSIC_URL),{loop:true,volume:.7});this.el.currentTime=0;this.el.play().catch(()=>{})}
+    else tune()},
+  stop(){if(this.el)this.el.pause()}};
+
+/* ---------- kursor kue animatif ---------- */
+(function(){
+  const reduce=matchMedia('(prefers-reduced-motion:reduce)').matches,fine=matchMedia('(hover:hover) and (pointer:fine)').matches;
+  const PAL=[['#ff8fb3','#ffe066'],['#7fe0c3','#ff8fb3'],['#b79cff','#ffb27a'],['#7cc5ff','#ffe066'],['#ff6b81','#7fe0c3']],COL=['#ff3d81','#ffd23f','#00b4d8','#7bd88f','#fff','#b79cff','#ff9a3c'];
+  let pi=0,lastSp=0;
+  function spawn(cls,x,y,n,burstMode){
+    for(let i=0;i<n;i++){const e=document.createElement('i');e.className=cls;
+      e.style.cssText=`left:${x}px;top:${y}px;background:${cls==='cr'?['#c68642','#ff8fb3','#f7dc9b'][i%3]:COL[Math.random()*COL.length|0]};--dx:${burstMode?Math.cos(i*6.28/n)*(24+Math.random()*30):Math.random()*50-25}px;--dy:${burstMode?Math.sin(i*6.28/n)*(24+Math.random()*30):0}px;--r:${Math.random()*360}deg`;
+      e.onanimationend=()=>e.remove();document.body.appendChild(e)}
+  }
+  addEventListener('pointerdown',e=>{if(!reduce){spawn('cr',e.clientX,e.clientY,10,true);spawn('sp',e.clientX,e.clientY,6)}});
+  window.ccDialog=on=>{document.documentElement.classList.toggle('nocc',on);const c=$('#ck');if(c)c.classList.toggle('nocc',on)};
+  if(!fine)return;
+  const ck=document.createElement('div');ck.id='ck';
+  ck.innerHTML=`<svg viewBox="0 0 44 50"><g class="ckflame"><path d="M22 0C25.5 3.5 25.5 6.5 22 8C18.5 6.5 18.5 3.5 22 0Z" fill="#ffb703"/><path d="M22 3C23.8 5 23.8 6.5 22 7.5C20.2 6.5 20.2 5 22 3Z" fill="#fff3b0"/></g>
+  <rect x="20.5" y="7" width="3" height="11" rx="1" fill="#4dabf7"/>
+  <rect x="11" y="19" width="22" height="11" rx="4" fill="#f7dc9b"/><rect x="10" y="17" width="24" height="6" rx="3" style="fill:var(--f)"/>
+  <rect x="5" y="30" width="34" height="12" rx="4" fill="#f3b6a0"/><rect x="4" y="28" width="36" height="6" rx="3" style="fill:var(--g)"/>
+  <circle cx="14" cy="16" r="2.4" fill="#e63946"/><circle cx="30" cy="16" r="2.4" fill="#e63946"/>
+  <ellipse cx="22" cy="46" rx="19" ry="3.5" fill="#fff" stroke="#0002"/></svg>`;
+  const setPal=()=>{ck.style.setProperty('--f',PAL[pi][0]);ck.style.setProperty('--g',PAL[pi][1])};setPal();
+  document.body.appendChild(ck);document.documentElement.classList.add('cc');
+  let x=-100,y=-100,tx=-100,ty=-100;
+  const HOV='a,button,select,label,.gift,input[type=file],input[type=color],[data-tab]',TXT='input[type=text],input[type=email],input[type=password],input[type=date],input[type=number],textarea';
+  addEventListener('pointermove',e=>{
+    if(e.pointerType!=='mouse')return;tx=e.clientX;ty=e.clientY;ck.classList.add('on');
+    const t=e.target.closest?e.target:document.body;ck.classList.toggle('hov',!!t.closest(HOV));ck.style.visibility=t.closest(TXT)?'hidden':'visible';
+    if(!reduce&&e.timeStamp-lastSp>55){lastSp=e.timeStamp;spawn('sp',tx,ty+14,1)}
+  });
+  document.documentElement.addEventListener('mouseleave',()=>ck.classList.remove('on'));
+  addEventListener('pointerdown',e=>{if(e.pointerType==='mouse'){ck.classList.add('dn');pi=(pi+1)%PAL.length;setPal()}});
+  addEventListener('pointerup',()=>ck.classList.remove('dn'));
+  (function tick(){x+=(tx-x)*.35;y+=(ty-y)*.35;const r=reduce?0:Math.max(-24,Math.min(24,(tx-x)*.9));
+    ck.style.transform=`translate3d(${x}px,${y}px,0) rotate(${r}deg)`;requestAnimationFrame(tick)})();
+  const dlg=$('#authDlg');dlg.addEventListener('close',()=>ccDialog(false));
+})();
+
+/* ---------- start ---------- */
+(async function init(){
+  drawAuth();
+  const qs=new URLSearchParams(location.search),v=qs.get('v');
+  if(v&&/^[\w-]+$/.test(v)){
+    $('#top').hidden=$('#app').hidden=true;const vw=$('#viewer');vw.hidden=false;
+    vw.innerHTML='<p style="color:#fff;text-align:center;padding:40vh 20px 0;font-size:1.3rem;position:fixed;inset:0;background:linear-gradient(135deg,#ff3d81,#ff9a3c)">Menyiapkan kejutan… 🎁</p>';
+    const r=await api('getCard',{id:v});
+    if(!r.ok||r.card.kind!=='birthday'){vw.innerHTML='<p style="text-align:center;padding:80px 20px;font-size:1.2rem">Kejutan tidak ditemukan atau sudah dihapus.</p>';return}
+    document.title='Kejutan ulang tahun untuk '+(r.card.name||'kamu');
+    mount(vw,r.card);return;
+  }
+  const tk=qs.get('verify');
+  if(tk){history.replaceState({},'',location.pathname);const r=await api('verify',{token:tk});toast(r.ok?r.message:r.error);if(r.ok)openAuth('login')}
+})();
+</script>
+</body>
+</html>
